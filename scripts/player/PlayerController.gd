@@ -40,8 +40,8 @@ func _setup_sprite() -> void:
 		var path: String = CHARACTER_SPRITES.get(char_id, "res://assets/characters/spriteA1_spritesheet.png")
 		if ResourceLoader.exists(path):
 			_sprite.texture = load(path)
-			_sprite.hframes = 7
-			_sprite.vframes = 2
+			_sprite.hframes = 4
+			_sprite.vframes = 1
 			_sprite.frame = 0
 
 func _physics_process(_delta: float) -> void:

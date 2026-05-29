@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3]
+[gd_scene load_steps=19 format=3]
 
 [ext_resource type="Script" path="res://scripts/world/BarrioDemo.gd" id="1_barrio"]
 [ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="2_player"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" path="res://assets/characters/anciano.png" id="12_vecino"]
 [ext_resource type="Texture2D" path="res://assets/characters/chicajoven.png" id="13_vecina"]
 [ext_resource type="Script" path="res://scripts/npc/ChemaBarNPC.gd" id="14_chema_script"]
+[ext_resource type="Texture2D" path="res://assets/tiles/casas.png" id="15_casas"]
 
 [sub_resource type="CircleShape2D" id="1_npc_col"]
 radius = 6.0
@@ -58,9 +59,11 @@ color = Color(0.86, 0.78, 0.22, 1)
 [node name="BloquePisos" type="StaticBody2D" parent="Buildings"]
 position = Vector2(230, 120)
 
-[node name="Visual" type="Polygon2D" parent="Buildings/BloquePisos"]
-polygon = PackedVector2Array(-110, -42, 110, -42, 110, 42, -110, 42)
-color = Color(0.45, 0.22, 0.12, 1)
+[node name="Visual" type="Sprite2D" parent="Buildings/BloquePisos"]
+texture = ExtResource("15_casas")
+region_enabled = true
+region_rect = Rect2(0, 0, 48, 48)
+scale = Vector2(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/BloquePisos"]
 shape = SubResource("2_building_col")
@@ -68,9 +71,11 @@ shape = SubResource("2_building_col")
 [node name="BarChema" type="StaticBody2D" parent="Buildings"]
 position = Vector2(500, 290)
 
-[node name="Visual" type="Polygon2D" parent="Buildings/BarChema"]
-polygon = PackedVector2Array(-70, -34, 70, -34, 70, 34, -70, 34)
-color = Color(0.42, 0.16, 0.11, 1)
+[node name="Visual" type="Sprite2D" parent="Buildings/BarChema"]
+texture = ExtResource("15_casas")
+region_enabled = true
+region_rect = Rect2(96, 0, 48, 48)
+scale = Vector2(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/BarChema"]
 shape = SubResource("3_building_col_small")
@@ -78,9 +83,11 @@ shape = SubResource("3_building_col_small")
 [node name="TallerTito" type="StaticBody2D" parent="Buildings"]
 position = Vector2(760, 750)
 
-[node name="Visual" type="Polygon2D" parent="Buildings/TallerTito"]
-polygon = PackedVector2Array(-80, -38, 80, -38, 80, 38, -80, 38)
-color = Color(0.26, 0.35, 0.42, 1)
+[node name="Visual" type="Sprite2D" parent="Buildings/TallerTito"]
+texture = ExtResource("15_casas")
+region_enabled = true
+region_rect = Rect2(144, 0, 48, 48)
+scale = Vector2(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/TallerTito"]
 shape = SubResource("3_building_col_small")
@@ -97,35 +104,38 @@ display_name = "Doña Carmen"
 texture = ExtResource("9_carmen")
 hframes = 4
 vframes = 1
-position = Vector2(0, -10)
+frame = 0
+position = Vector2(0, -20)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/DonaCarmen"]
 shape = SubResource("1_npc_col")
 
 [node name="Label" type="Label" parent="NPCs/DonaCarmen"]
-position = Vector2(-28, -28)
+position = Vector2(-20, -48)
 text = "Doña Carmen"
-theme_override_font_sizes/font_size = 7
+theme_override_font_sizes/font_size = 5
 
 [node name="Chema" type="StaticBody2D" parent="NPCs"]
-position = Vector2(500, 360)
+position = Vector2(470, 360)
 script = ExtResource("14_chema_script")
 npc_id = "chema_bar"
 display_name = "Chema"
 
 [node name="Sprite2D" type="Sprite2D" parent="NPCs/Chema"]
 texture = ExtResource("10_chema")
-hframes = 4
-vframes = 1
-position = Vector2(0, -10)
+hframes = 8
+vframes = 2
+frame = 0
+position = Vector2(0, -20)
+scale = Vector2(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/Chema"]
 shape = SubResource("1_npc_col")
 
 [node name="Label" type="Label" parent="NPCs/Chema"]
-position = Vector2(-18, -28)
+position = Vector2(-12, -48)
 text = "Chema"
-theme_override_font_sizes/font_size = 7
+theme_override_font_sizes/font_size = 5
 
 [node name="Tito" type="StaticBody2D" parent="NPCs"]
 position = Vector2(760, 820)
@@ -135,17 +145,19 @@ display_name = "Tito"
 
 [node name="Sprite2D" type="Sprite2D" parent="NPCs/Tito"]
 texture = ExtResource("11_tito")
-hframes = 4
-vframes = 1
-position = Vector2(0, -10)
+hframes = 8
+vframes = 2
+frame = 0
+position = Vector2(0, -20)
+scale = Vector2(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/Tito"]
 shape = SubResource("1_npc_col")
 
 [node name="Label" type="Label" parent="NPCs/Tito"]
-position = Vector2(-14, -28)
+position = Vector2(-10, -48)
 text = "Tito"
-theme_override_font_sizes/font_size = 7
+theme_override_font_sizes/font_size = 5
 
 [node name="Vecino01" type="StaticBody2D" parent="NPCs"]
 position = Vector2(620, 345)
@@ -155,17 +167,19 @@ display_name = "Juanito"
 
 [node name="Sprite2D" type="Sprite2D" parent="NPCs/Vecino01"]
 texture = ExtResource("12_vecino")
-hframes = 4
-vframes = 1
-position = Vector2(0, -10)
+hframes = 8
+vframes = 2
+frame = 0
+position = Vector2(0, -20)
+scale = Vector2(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/Vecino01"]
 shape = SubResource("1_npc_col")
 
 [node name="Label" type="Label" parent="NPCs/Vecino01"]
-position = Vector2(-20, -28)
+position = Vector2(-14, -48)
 text = "Juanito"
-theme_override_font_sizes/font_size = 7
+theme_override_font_sizes/font_size = 5
 
 [node name="Vecino02" type="StaticBody2D" parent="NPCs"]
 position = Vector2(660, 260)
@@ -175,17 +189,19 @@ display_name = "Vecina"
 
 [node name="Sprite2D" type="Sprite2D" parent="NPCs/Vecino02"]
 texture = ExtResource("13_vecina")
-hframes = 4
-vframes = 1
-position = Vector2(0, -10)
+hframes = 8
+vframes = 2
+frame = 0
+position = Vector2(0, -20)
+scale = Vector2(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/Vecino02"]
 shape = SubResource("1_npc_col")
 
 [node name="Label" type="Label" parent="NPCs/Vecino02"]
-position = Vector2(-20, -28)
+position = Vector2(-14, -48)
 text = "Vecina"
-theme_override_font_sizes/font_size = 7
+theme_override_font_sizes/font_size = 5
 
 [node name="Vehicles" type="Node2D" parent="."]
 
@@ -200,7 +216,7 @@ vehicle_name = "Renault 5"
 position = Vector2(760, 700)
 
 [node name="Player" parent="." instance=ExtResource("2_player")]
-position = Vector2(320, 360)
+position = Vector2(500, 380)
 
 [node name="HUD" parent="." instance=ExtResource("3_hud")]
 
