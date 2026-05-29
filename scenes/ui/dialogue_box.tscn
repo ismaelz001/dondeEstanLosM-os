@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/DialogueBox.gd" id="1_dialogue"]
+[ext_resource type="Texture2D" path="res://assets/ui/caja_dialogo.png" id="2_box"]
+
+[node name="DialogueBox" type="CanvasLayer"]
+script = ExtResource("1_dialogue")
+layer = 20
+
+[node name="Box" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -68.0
+offset_right = 160.0
+offset_bottom = -4.0
+texture = ExtResource("2_box")
+stretch_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Box"]
+offset_left = 8.0
+offset_top = 6.0
+offset_right = 210.0
+offset_bottom = 58.0
+theme_override_constants/separation = 2
+
+[node name="SpeakerLabel" type="Label" parent="Box/VBoxContainer"]
+text = ""
+theme_override_font_sizes/font_size = 8
+
+[node name="TextLabel" type="Label" parent="Box/VBoxContainer"]
+custom_minimum_size = Vector2(200, 32)
+text = ""
+autowrap_mode = 3
+theme_override_font_sizes/font_size = 7
+
+[node name="OptionsContainer" type="VBoxContainer" parent="Box"]
+offset_left = 216.0
+offset_top = 6.0
+offset_right = 312.0
+offset_bottom = 58.0
+theme_override_constants/separation = 2

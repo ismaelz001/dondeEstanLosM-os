@@ -1,0 +1,96 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcfektfh6tu"]
+
+[ext_resource type="Script" path="res://scripts/ui/HUD.gd" id="1_hud"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_hud")
+layer = 10
+
+[node name="StatsPanel" type="PanelContainer" parent="."]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 170.0
+offset_bottom = 28.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StatsPanel"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 162.0
+offset_bottom = 14.0
+theme_override_constants/separation = 4
+
+[node name="LabelMoney" type="Label" parent="StatsPanel/HBoxContainer"]
+text = "€0"
+theme_override_font_sizes/font_size = 8
+
+[node name="LabelFamily" type="Label" parent="StatsPanel/HBoxContainer"]
+text = "FAM 50"
+theme_override_font_sizes/font_size = 8
+
+[node name="LabelRespect" type="Label" parent="StatsPanel/HBoxContainer"]
+text = "REP 25"
+theme_override_font_sizes/font_size = 8
+
+[node name="LabelHeat" type="Label" parent="StatsPanel/HBoxContainer"]
+text = "CAL 0"
+theme_override_font_sizes/font_size = 8
+
+[node name="LabelTime" type="Label" parent="StatsPanel"]
+offset_left = 4.0
+offset_top = 14.0
+offset_right = 162.0
+offset_bottom = 24.0
+text = "MORNING · DÍA 1"
+theme_override_font_sizes/font_size = 7
+
+[node name="MissionPanel" type="PanelContainer" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -150.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 74.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MissionPanel"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 142.0
+offset_bottom = 66.0
+
+[node name="MissionTitle" type="Label" parent="MissionPanel/VBoxContainer"]
+text = "Misión"
+theme_override_font_sizes/font_size = 8
+
+[node name="Objectives" type="VBoxContainer" parent="MissionPanel/VBoxContainer"]
+
+[node name="VehiclePanel" type="PanelContainer" parent="."]
+visible = false
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -40.0
+offset_right = 120.0
+offset_bottom = -4.0
+
+[node name="LabelVehicle" type="Label" parent="VehiclePanel"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 112.0
+offset_bottom = 20.0
+text = "coche"
+theme_override_font_sizes/font_size = 8
+
+[node name="InteractPrompt" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -60.0
+offset_right = 48.0
+offset_bottom = -44.0
+text = "E - Hablar"
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1

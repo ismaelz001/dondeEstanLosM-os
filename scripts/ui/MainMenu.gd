@@ -6,11 +6,13 @@ extends Control
 
 @onready var btn_new_game: Button  = $VBoxContainer/Button_NewGame
 @onready var btn_continue: Button  = $VBoxContainer/Button_Continue
+@onready var btn_demo: Button      = $VBoxContainer/Button_Demo
 @onready var btn_quit: Button      = $VBoxContainer/Button_Quit
 
 func _ready() -> void:
 	btn_new_game.pressed.connect(_on_new_game)
 	btn_continue.pressed.connect(_on_continue)
+	btn_demo.pressed.connect(_on_btn_demo_pressed)
 	btn_quit.pressed.connect(_on_quit)
 	# Desactivar Continuar si no hay guardado
 	btn_continue.disabled = not SaveSystem.has_save()

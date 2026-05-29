@@ -1,0 +1,207 @@
+[gd_scene load_steps=18 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/BarrioDemo.gd" id="1_barrio"]
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="3_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/dialogue_box.tscn" id="4_dialogue"]
+[ext_resource type="PackedScene" path="res://scenes/world/vehicle_base.tscn" id="5_vehicle"]
+[ext_resource type="Script" path="res://scripts/npc/NPCBase.gd" id="6_npc"]
+[ext_resource type="Script" path="res://scripts/npc/DonaCarmenNPC.gd" id="7_dona"]
+[ext_resource type="Script" path="res://scripts/npc/VecinoJuanito.gd" id="8_juanito"]
+[ext_resource type="Texture2D" path="res://assets/characters/Dcarmen_spritesheet.png" id="9_carmen"]
+[ext_resource type="Texture2D" path="res://assets/characters/chema.png" id="10_chema"]
+[ext_resource type="Texture2D" path="res://assets/characters/mecanicoTito.png" id="11_tito"]
+[ext_resource type="Texture2D" path="res://assets/characters/anciano.png" id="12_vecino"]
+[ext_resource type="Texture2D" path="res://assets/characters/chicajoven.png" id="13_vecina"]
+[ext_resource type="Script" path="res://scripts/npc/ChemaBarNPC.gd" id="14_chema_script"]
+
+[sub_resource type="CircleShape2D" id="1_npc_col"]
+radius = 6.0
+
+[sub_resource type="RectangleShape2D" id="2_building_col"]
+size = Vector2(180, 70)
+
+[sub_resource type="RectangleShape2D" id="3_building_col_small"]
+size = Vector2(120, 56)
+
+[node name="BarrioDemo" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_barrio")
+
+[node name="TileMap" type="TileMap" parent="."]
+visible = false
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="Asfalto" type="Polygon2D" parent="Ground"]
+polygon = PackedVector2Array(0, 0, 1280, 0, 1280, 960, 0, 960)
+color = Color(0.23, 0.23, 0.23, 1)
+
+[node name="AceraNorte" type="Polygon2D" parent="Ground"]
+polygon = PackedVector2Array(0, 0, 1280, 0, 1280, 210, 0, 210)
+color = Color(0.72, 0.66, 0.5, 1)
+
+[node name="AceraSur" type="Polygon2D" parent="Ground"]
+polygon = PackedVector2Array(0, 680, 1280, 680, 1280, 960, 0, 960)
+color = Color(0.72, 0.66, 0.5, 1)
+
+[node name="Avenida" type="Polygon2D" parent="Ground"]
+polygon = PackedVector2Array(0, 392, 1280, 392, 1280, 560, 0, 560)
+color = Color(0.32, 0.32, 0.32, 1)
+
+[node name="LineaAvenida" type="Polygon2D" parent="Ground"]
+polygon = PackedVector2Array(0, 474, 1280, 474, 1280, 482, 0, 482)
+color = Color(0.86, 0.78, 0.22, 1)
+
+[node name="Buildings" type="Node2D" parent="."]
+
+[node name="BloquePisos" type="StaticBody2D" parent="Buildings"]
+position = Vector2(230, 120)
+
+[node name="Visual" type="Polygon2D" parent="Buildings/BloquePisos"]
+polygon = PackedVector2Array(-110, -42, 110, -42, 110, 42, -110, 42)
+color = Color(0.45, 0.22, 0.12, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/BloquePisos"]
+shape = SubResource("2_building_col")
+
+[node name="BarChema" type="StaticBody2D" parent="Buildings"]
+position = Vector2(500, 290)
+
+[node name="Visual" type="Polygon2D" parent="Buildings/BarChema"]
+polygon = PackedVector2Array(-70, -34, 70, -34, 70, 34, -70, 34)
+color = Color(0.42, 0.16, 0.11, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/BarChema"]
+shape = SubResource("3_building_col_small")
+
+[node name="TallerTito" type="StaticBody2D" parent="Buildings"]
+position = Vector2(760, 750)
+
+[node name="Visual" type="Polygon2D" parent="Buildings/TallerTito"]
+polygon = PackedVector2Array(-80, -38, 80, -38, 80, 38, -80, 38)
+color = Color(0.26, 0.35, 0.42, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/TallerTito"]
+shape = SubResource("3_building_col_small")
+
+[node name="NPCs" type="Node2D" parent="."]
+
+[node name="DonaCarmen" type="StaticBody2D" parent="NPCs"]
+position = Vector2(230, 210)
+script = ExtResource("7_dona")
+npc_id = "dona_carmen"
+display_name = "Doña Carmen"
+
+[node name="Sprite2D" type="Sprite2D" parent="NPCs/DonaCarmen"]
+texture = ExtResource("9_carmen")
+hframes = 4
+vframes = 1
+position = Vector2(0, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/DonaCarmen"]
+shape = SubResource("1_npc_col")
+
+[node name="Label" type="Label" parent="NPCs/DonaCarmen"]
+position = Vector2(-28, -28)
+text = "Doña Carmen"
+theme_override_font_sizes/font_size = 7
+
+[node name="Chema" type="StaticBody2D" parent="NPCs"]
+position = Vector2(500, 360)
+script = ExtResource("14_chema_script")
+npc_id = "chema_bar"
+display_name = "Chema"
+
+[node name="Sprite2D" type="Sprite2D" parent="NPCs/Chema"]
+texture = ExtResource("10_chema")
+hframes = 4
+vframes = 1
+position = Vector2(0, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/Chema"]
+shape = SubResource("1_npc_col")
+
+[node name="Label" type="Label" parent="NPCs/Chema"]
+position = Vector2(-18, -28)
+text = "Chema"
+theme_override_font_sizes/font_size = 7
+
+[node name="Tito" type="StaticBody2D" parent="NPCs"]
+position = Vector2(760, 820)
+script = ExtResource("6_npc")
+npc_id = "tito_reparaciones"
+display_name = "Tito"
+
+[node name="Sprite2D" type="Sprite2D" parent="NPCs/Tito"]
+texture = ExtResource("11_tito")
+hframes = 4
+vframes = 1
+position = Vector2(0, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/Tito"]
+shape = SubResource("1_npc_col")
+
+[node name="Label" type="Label" parent="NPCs/Tito"]
+position = Vector2(-14, -28)
+text = "Tito"
+theme_override_font_sizes/font_size = 7
+
+[node name="Vecino01" type="StaticBody2D" parent="NPCs"]
+position = Vector2(620, 345)
+script = ExtResource("8_juanito")
+npc_id = "vecino_01"
+display_name = "Juanito"
+
+[node name="Sprite2D" type="Sprite2D" parent="NPCs/Vecino01"]
+texture = ExtResource("12_vecino")
+hframes = 4
+vframes = 1
+position = Vector2(0, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/Vecino01"]
+shape = SubResource("1_npc_col")
+
+[node name="Label" type="Label" parent="NPCs/Vecino01"]
+position = Vector2(-20, -28)
+text = "Juanito"
+theme_override_font_sizes/font_size = 7
+
+[node name="Vecino02" type="StaticBody2D" parent="NPCs"]
+position = Vector2(660, 260)
+script = ExtResource("6_npc")
+npc_id = "vecino_02"
+display_name = "Vecina"
+
+[node name="Sprite2D" type="Sprite2D" parent="NPCs/Vecino02"]
+texture = ExtResource("13_vecina")
+hframes = 4
+vframes = 1
+position = Vector2(0, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCs/Vecino02"]
+shape = SubResource("1_npc_col")
+
+[node name="Label" type="Label" parent="NPCs/Vecino02"]
+position = Vector2(-20, -28)
+text = "Vecina"
+theme_override_font_sizes/font_size = 7
+
+[node name="Vehicles" type="Node2D" parent="."]
+
+[node name="CocheTito" parent="Vehicles" instance=ExtResource("5_vehicle")]
+position = Vector2(390, 470)
+vehicle_id = "coche_tito"
+vehicle_name = "Renault 5"
+
+[node name="Markers" type="Node2D" parent="."]
+
+[node name="TallerEntrada" type="Marker2D" parent="Markers"]
+position = Vector2(760, 700)
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(320, 360)
+
+[node name="HUD" parent="." instance=ExtResource("3_hud")]
+
+[node name="DialogueBox" parent="HUD" instance=ExtResource("4_dialogue")]

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/VehicleBase.gd" id="1_vehicle"]
+[ext_resource type="Texture2D" path="res://assets/characters/carR5_spritesheet.png" id="2_car"]
+
+[sub_resource type="RectangleShape2D" id="1_car_col"]
+size = Vector2(28, 14)
+
+[sub_resource type="CircleShape2D" id="2_entry_col"]
+radius = 24.0
+
+[node name="VehicleBase" type="CharacterBody2D"]
+script = ExtResource("1_vehicle")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_car")
+hframes = 4
+vframes = 2
+frame = 0
+position = Vector2(0, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("1_car_col")
+
+[node name="EntryZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntryZone"]
+shape = SubResource("2_entry_col")
+
+[node name="ExitPoint" type="Marker2D" parent="."]
+position = Vector2(20, 0)

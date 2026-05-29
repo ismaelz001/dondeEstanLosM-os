@@ -1,0 +1,98 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5qmtlx5k8jed"]
+
+[ext_resource type="Script" uid="uid://dn0fmuieldp21" path="res://scripts/ui/MainMenu.gd" id="1_mainmenu"]
+[ext_resource type="Texture2D" path="res://assets/ui/city_bg.jpg" id="2_citybg"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_mainmenu")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("2_citybg")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="BgDim" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.45)
+
+[node name="Label_Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_top = 0.0
+offset_left = -80.0
+offset_right = 80.0
+offset_top = 30.0
+offset_bottom = 50.0
+text = "DONDE ESTAN LOS MIOS"
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 1
+
+[node name="Label_Subtitle" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_top = 0.0
+offset_left = -60.0
+offset_right = 60.0
+offset_top = 50.0
+offset_bottom = 62.0
+text = "La semana del perro"
+theme_override_font_sizes/font_size = 7
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_right = 40.0
+offset_top = -28.0
+offset_bottom = 36.0
+theme_override_constants/separation = 4
+
+[node name="Button_NewGame" type="Button" parent="VBoxContainer"]
+text = "Nueva Partida"
+theme_override_font_sizes/font_size = 8
+
+[node name="Button_Continue" type="Button" parent="VBoxContainer"]
+text = "Continuar"
+theme_override_font_sizes/font_size = 8
+
+[node name="Button_Demo" type="Button" parent="VBoxContainer"]
+text = "Jugar Demo"
+theme_override_font_sizes/font_size = 8
+
+[node name="Button_Quit" type="Button" parent="VBoxContainer"]
+text = "Salir"
+theme_override_font_sizes/font_size = 8
+
+[node name="Label_Version" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -12.0
+offset_right = 80.0
+offset_bottom = -2.0
+text = "v0.1 demo"
+theme_override_font_sizes/font_size = 6
