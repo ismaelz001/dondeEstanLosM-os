@@ -1,0 +1,37 @@
+{
+  "id": "mision_03_coche",
+  "title": "El coche de Tito",
+  "description": "Tito necesita mover un coche al taller. Solo conducir, nada más.",
+  "giver_npc": "tito_reparaciones",
+  "auto_complete": true,
+  "conditions_to_unlock": {
+    "day_min": 1
+  },
+  "objectives": [
+    {
+      "id": "hablar_tito",
+      "type": "talk_to_npc",
+      "npc_id": "tito_reparaciones",
+      "dialogue_node": "tito_da_llave",
+      "description": "Habla con Tito",
+      "status": "pending"
+    },
+    {
+      "id": "llevar_coche_taller",
+      "type": "drive_vehicle_to_point",
+      "vehicle_id": "coche_tito",
+      "destination_marker": "taller_entrada",
+      "radius": 32,
+      "description": "Lleva el coche al taller",
+      "status": "pending"
+    }
+  ],
+  "rewards": {
+    "money": 50,
+    "respect": 5,
+    "street_path": 10,
+    "business_reputation": 8
+  },
+  "fail_conditions": {},
+  "fail_penalties": {}
+}

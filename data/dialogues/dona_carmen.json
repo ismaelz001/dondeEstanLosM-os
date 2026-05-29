@@ -1,0 +1,70 @@
+[
+  {
+    "id": "saludo_inicial",
+    "speaker": "Doña Carmen",
+    "text": "Ay, hijo. ¿Sabes lo que me ha llegado esta mañana? La factura de la luz. No tengo para pagarla.",
+    "options": [
+      {
+        "label": "¿Cuánto es?",
+        "next": "carmen_dice_cantidad",
+        "conditions": {},
+        "consequences": { "family_trust": 1 }
+      },
+      {
+        "label": "Eso no es mi problema.",
+        "next": "carmen_triste",
+        "conditions": {},
+        "consequences": { "family": -5, "family_trust": -5 }
+      }
+    ]
+  },
+  {
+    "id": "carmen_dice_cantidad",
+    "speaker": "Doña Carmen",
+    "text": "Cincuenta euros. Para ti quizás no es nada, pero yo no los tengo.",
+    "next": "carmen_pide_ayuda",
+    "conditions": {},
+    "consequences": {},
+    "start_mission": "mision_01_luz"
+  },
+  {
+    "id": "carmen_pide_ayuda",
+    "speaker": "Doña Carmen",
+    "text": "Si pudieras traerme cincuenta euros antes de mañana... te lo devolvería, ya sabes.",
+    "next": null,
+    "conditions": {},
+    "consequences": {}
+  },
+  {
+    "id": "carmen_triste",
+    "speaker": "Doña Carmen",
+    "text": "Claro. No esperaba menos.",
+    "next": null,
+    "conditions": {},
+    "consequences": {}
+  },
+  {
+    "id": "entregar_dinero",
+    "speaker": "Doña Carmen",
+    "text": "Dios te lo pague, hijo. Sabía yo que no me ibas a dejar sola.",
+    "next": null,
+    "conditions": {},
+    "consequences": { "family": 5, "family_trust": 5 }
+  },
+  {
+    "id": "mision_activa",
+    "speaker": "Doña Carmen",
+    "text": "Todavía falta, ¿verdad? Necesito esos cincuenta euros antes de mañana.",
+    "next": null,
+    "conditions": {},
+    "consequences": {}
+  },
+  {
+    "id": "mision_completada",
+    "speaker": "Doña Carmen",
+    "text": "Gracias otra vez, hijo. No lo olvido.",
+    "next": null,
+    "conditions": {},
+    "consequences": {}
+  }
+]

@@ -1,0 +1,44 @@
+{
+  "id": "mision_02_favor",
+  "title": "El favor de Chema",
+  "description": "Chema necesita que le hagas un recado. Nada del otro mundo.",
+  "giver_npc": "chema_bar",
+  "auto_complete": false,
+  "conditions_to_unlock": {
+    "day_min": 1
+  },
+  "objectives": [
+    {
+      "id": "hablar_chema_recado",
+      "type": "talk_to_npc",
+      "npc_id": "chema_bar",
+      "dialogue_node": "chema_da_recado",
+      "description": "Habla con Chema sobre el recado",
+      "status": "pending"
+    },
+    {
+      "id": "hablar_vecino_mensaje",
+      "type": "talk_to_npc",
+      "npc_id": "vecino_01",
+      "dialogue_node": "recibir_mensaje",
+      "description": "Habla con el vecino del bar",
+      "status": "pending"
+    },
+    {
+      "id": "volver_chema",
+      "type": "talk_to_npc",
+      "npc_id": "chema_bar",
+      "dialogue_node": "entregar_recado",
+      "description": "Vuelve con Chema",
+      "status": "pending"
+    }
+  ],
+  "rewards": {
+    "money": 30,
+    "respect": 10,
+    "street_path": 5,
+    "neighborhood_respect": 8
+  },
+  "fail_conditions": {},
+  "fail_penalties": {}
+}

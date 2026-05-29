@@ -1,0 +1,92 @@
+[
+  {
+    "id": "saludo_inicial",
+    "speaker": "Tito",
+    "text": "Eh, tú. Tienes pinta de necesitar pasta.",
+    "options": [
+      {
+        "label": "Siempre.",
+        "next": "tito_oferta",
+        "conditions": {},
+        "consequences": { "street_path": 1 }
+      },
+      {
+        "label": "Solo venía a ver.",
+        "next": "tito_despedida",
+        "conditions": {},
+        "consequences": { "neighborhood_respect": 1 }
+      }
+    ]
+  },
+  {
+    "id": "tito_oferta",
+    "speaker": "Tito",
+    "text": "Tengo un coche que hay que mover al taller, tres calles más abajo. Cincuenta pavos si lo traes sin rayones.",
+    "options": [
+      {
+        "label": "Hecho.",
+        "next": "tito_da_llave",
+        "conditions": {},
+        "consequences": { "street_path": 2 }
+      },
+      {
+        "label": "No sé conducir bien.",
+        "next": "tito_insiste",
+        "conditions": {},
+        "consequences": {}
+      }
+    ]
+  },
+  {
+    "id": "tito_insiste",
+    "speaker": "Tito",
+    "text": "Es recto y a la izquierda. No hace falta carné de Fórmula 1.",
+    "options": [
+      {
+        "label": "Vale, lo intento.",
+        "next": "tito_da_llave",
+        "conditions": {},
+        "consequences": {}
+      },
+      {
+        "label": "No, gracias.",
+        "next": "tito_despedida",
+        "conditions": {},
+        "consequences": {}
+      }
+    ]
+  },
+  {
+    "id": "tito_da_llave",
+    "speaker": "Tito",
+    "text": "El R5 azul aparcado en la avenida. La llave está en el contacto. Mételo en la bahía del taller.",
+    "next": null,
+    "conditions": {},
+    "consequences": { "business_reputation": 2 },
+    "start_mission": "mision_03_coche"
+  },
+  {
+    "id": "tito_despedida",
+    "speaker": "Tito",
+    "text": "Cuando quieras.",
+    "next": null,
+    "conditions": {},
+    "consequences": {}
+  },
+  {
+    "id": "mision_activa",
+    "speaker": "Tito",
+    "text": "El coche sigue en la avenida, ¿no? Mételo en la bahía.",
+    "next": null,
+    "conditions": {},
+    "consequences": {}
+  },
+  {
+    "id": "mision_completada",
+    "speaker": "Tito",
+    "text": "Bien hecho. Sin rayones. Aquí hay más trabajo si lo quieres.",
+    "next": null,
+    "conditions": {},
+    "consequences": { "business_reputation": 5 }
+  }
+]

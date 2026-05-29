@@ -1,0 +1,70 @@
+[
+  {
+    "id": "saludo_inicial",
+    "speaker": "Chema",
+    "text": "¡Chaval! Justo el que necesitaba. Tengo un recadillo para ti si te interesa ganar algo.",
+    "options": [
+      {
+        "label": "¿Qué hay?",
+        "next": "chema_explica",
+        "conditions": {},
+        "consequences": { "street_path": 1 }
+      },
+      {
+        "label": "Ahora no puedo.",
+        "next": "chema_despedida",
+        "conditions": {},
+        "consequences": {}
+      }
+    ]
+  },
+  {
+    "id": "chema_explica",
+    "speaker": "Chema",
+    "text": "El Juanito del bar de enfrente. Dile que le debo una cerveza y que ya estamos en paz. Así de sencillo.",
+    "next": "chema_da_recado",
+    "conditions": {},
+    "consequences": {}
+  },
+  {
+    "id": "chema_da_recado",
+    "speaker": "Chema",
+    "text": "¿Te queda claro? Juanito. Cerveza. En paz.",
+    "next": null,
+    "conditions": {},
+    "consequences": {},
+    "start_mission": "mision_02_favor"
+  },
+  {
+    "id": "chema_despedida",
+    "speaker": "Chema",
+    "text": "Otro día, entonces.",
+    "next": null,
+    "conditions": {},
+    "consequences": {}
+  },
+  {
+    "id": "entregar_recado",
+    "speaker": "Chema",
+    "text": "¡Bien! Sabía que podía contar contigo. Aquí tienes, te lo has ganado.",
+    "next": null,
+    "conditions": {},
+    "consequences": { "respect": 5, "street_path": 3 }
+  },
+  {
+    "id": "mision_activa",
+    "speaker": "Chema",
+    "text": "¿Ya has hablado con Juanito? Que no se me olvide lo de la cerveza.",
+    "next": null,
+    "conditions": {},
+    "consequences": {}
+  },
+  {
+    "id": "mision_completada",
+    "speaker": "Chema",
+    "text": "Todo arreglado. Como siempre.",
+    "next": null,
+    "conditions": {},
+    "consequences": {}
+  }
+]

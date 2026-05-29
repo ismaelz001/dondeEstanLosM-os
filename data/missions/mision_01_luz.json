@@ -1,0 +1,42 @@
+{
+  "id": "mision_01_luz",
+  "title": "La factura de la luz",
+  "description": "Hay que pagar antes de que corten el suministro.",
+  "giver_npc": "dona_carmen",
+  "auto_complete": false,
+  "conditions_to_unlock": {
+    "day_min": 1,
+    "family_min": 30
+  },
+  "objectives": [
+    {
+      "id": "conseguir_dinero",
+      "type": "reach_state",
+      "variable": "money",
+      "target": 50,
+      "description": "Consigue 50€",
+      "status": "pending"
+    },
+    {
+      "id": "hablar_dona_carmen",
+      "type": "talk_to_npc",
+      "npc_id": "dona_carmen",
+      "dialogue_node": "entregar_dinero",
+      "description": "Lleva el dinero a casa",
+      "status": "pending"
+    }
+  ],
+  "rewards": {
+    "money": -50,
+    "family": 15,
+    "family_trust": 10,
+    "legal_path": 5
+  },
+  "fail_conditions": {
+    "day_max": 2
+  },
+  "fail_penalties": {
+    "family": -20,
+    "family_trust": -15
+  }
+}
