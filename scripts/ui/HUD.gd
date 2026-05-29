@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 # ============================================================
-# HUD — Interfaz de usuario en juego
+# HUD - Interfaz de usuario en juego
 # ============================================================
 
 @onready var label_money: Label = $StatsPanel/HBoxContainer/LabelMoney
@@ -20,36 +20,33 @@ extends CanvasLayer
 @onready var interact_prompt: Label = $InteractPrompt
 
 func _ready() -> void:
-	# Señales de GameState
 	GameState.visible_stats_changed.connect(_on_stat_changed)
 	GameState.time_changed.connect(_on_time_changed)
 
-	# Señales de MissionManager
 	MissionManager.active_mission_changed.connect(_on_active_mission_changed)
 	MissionManager.mission_objective_updated.connect(_on_objective_updated)
 
-	# Estado inicial
 	_refresh_all_stats()
 	mission_panel.visible = false
 	vehicle_panel.visible = false
 	interact_prompt.visible = false
 
 func _refresh_all_stats() -> void:
-	label_money.text = "€%d" % GameState.money
-	label_family.text = "FAM %d" % GameState.family
-	label_respect.text = "REP %d" % GameState.respect
-	label_heat.text = "CAL %d" % GameState.heat
-	label_time.text = "%s · DÍA %d" % [GameState.time_slot, GameState.day]
+	label_money.text = "EUR%d" % GameState.money
+	label_family.text = "F%d" % GameState.family
+	label_respect.text = "R%d" % GameState.respect
+	label_heat.text = "C%d" % GameState.heat
+	label_time.text = "D%d %s" % [GameState.day, GameState.time_slot]
 
 func _on_stat_changed(variable: String, value: int) -> void:
 	match variable:
-		"money":   label_money.text = "€%d" % value
-		"family":  label_family.text = "FAM %d" % value
-		"respect": label_respect.text = "REP %d" % value
-		"heat":    label_heat.text = "CAL %d" % value
+		"money": label_money.text = "EUR%d" % value
+		"family": label_family.text = "F%d" % value
+		"respect": label_respect.text = "R%d" % value
+		"heat": label_heat.text = "C%d" % value
 
 func _on_time_changed(day: int, slot: String) -> void:
-	label_time.text = "%s · DÍA %d" % [slot, day]
+	label_time.text = "D%d %s" % [day, slot]
 
 func _on_active_mission_changed(mission_id: String) -> void:
 	if mission_id == "":
@@ -68,20 +65,19 @@ func _refresh_objectives(mission_id: String) -> void:
 	var objectives = MissionManager.get_active_objectives(mission_id)
 	for obj in objectives:
 		var lbl = Label.new()
-		var prefix = "✓ " if obj["status"] == "completed" else "○ "
+		var prefix = "OK " if obj["status"] == "completed" else "- "
 		lbl.text = prefix + obj.get("description", "")
+		lbl.add_theme_font_size_override("font_size", 6)
 		mission_objectives.add_child(lbl)
 
 func _on_objective_updated(mission_id: String, _objective_id: String) -> void:
 	_refresh_objectives(mission_id)
 
-## Llamado por PlayerController cuando cambia el target de interacción
 func show_interact_prompt(target) -> void:
 	interact_prompt.visible = target != null
 	if target != null and target.has_method("interact"):
-		interact_prompt.text = "E - " + target.get("display_name", "Hablar")
+		interact_prompt.text = "E  " + target.get("display_name", "Hablar")
 
-## Llamado cuando el jugador entra/sale de vehículo
 func _process(_delta: float) -> void:
 	vehicle_panel.visible = GameState.in_vehicle
 	if GameState.in_vehicle:

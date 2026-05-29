@@ -16,6 +16,13 @@ const CHARACTER_SPRITES: Dictionary = {
 	"la_fati":     "res://assets/characters/spriteA6_spritesheet.png",
 }
 
+const DIRECTION_FRAMES: Dictionary = {
+	"S": 0,
+	"N": 1,
+	"W": 2,
+	"E": 3,
+}
+
 signal interaction_target_changed(target)
 
 @onready var interaction_area: Area2D = $InteractionArea
@@ -42,7 +49,7 @@ func _setup_sprite() -> void:
 			_sprite.texture = load(path)
 			_sprite.hframes = 4
 			_sprite.vframes = 1
-			_sprite.frame = 0
+			_set_sprite_direction(last_direction)
 
 func _physics_process(_delta: float) -> void:
 	if DialogueManager.is_active or GameState.in_vehicle:
@@ -75,6 +82,13 @@ func _update_direction(dir: Vector2) -> void:
 		last_direction = "E" if dir.x > 0 else "W"
 	else:
 		last_direction = "S" if dir.y > 0 else "N"
+	_set_sprite_direction(last_direction)
+
+func _set_sprite_direction(direction: String) -> void:
+	if _sprite == null:
+		return
+	if _sprite is Sprite2D:
+		_sprite.frame = DIRECTION_FRAMES.get(direction, 0)
 
 func _on_body_entered(body: Node) -> void:
 	if body.has_method("interact"):
