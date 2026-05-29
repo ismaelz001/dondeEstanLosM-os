@@ -42,6 +42,7 @@ func _setup_sprite() -> void:
 			_sprite.texture = load(path)
 			_sprite.hframes = 7
 			_sprite.vframes = 2
+			_sprite.frame = 0
 
 func _physics_process(_delta: float) -> void:
 	if DialogueManager.is_active or GameState.in_vehicle:

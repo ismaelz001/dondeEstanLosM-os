@@ -6,42 +6,42 @@
 script = ExtResource("1_hud")
 layer = 10
 
-[node name="StatsPanel" type="PanelContainer" parent="."]
+[node name="StatsPanel" type="Panel" parent="."]
 offset_left = 4.0
 offset_top = 4.0
-offset_right = 170.0
-offset_bottom = 28.0
+offset_right = 184.0
+offset_bottom = 32.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="StatsPanel"]
-offset_left = 4.0
+offset_left = 6.0
 offset_top = 4.0
-offset_right = 162.0
-offset_bottom = 14.0
-theme_override_constants/separation = 4
+offset_right = 176.0
+offset_bottom = 15.0
+theme_override_constants/separation = 6
 
 [node name="LabelMoney" type="Label" parent="StatsPanel/HBoxContainer"]
 text = "€0"
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 7
 
 [node name="LabelFamily" type="Label" parent="StatsPanel/HBoxContainer"]
 text = "FAM 50"
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 7
 
 [node name="LabelRespect" type="Label" parent="StatsPanel/HBoxContainer"]
 text = "REP 25"
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 7
 
 [node name="LabelHeat" type="Label" parent="StatsPanel/HBoxContainer"]
 text = "CAL 0"
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 7
 
 [node name="LabelTime" type="Label" parent="StatsPanel"]
-offset_left = 4.0
-offset_top = 14.0
-offset_right = 162.0
-offset_bottom = 24.0
+offset_left = 6.0
+offset_top = 17.0
+offset_right = 176.0
+offset_bottom = 28.0
 text = "MORNING · DÍA 1"
-theme_override_font_sizes/font_size = 7
+theme_override_font_sizes/font_size = 6
 
 [node name="MissionPanel" type="PanelContainer" parent="."]
 visible = false

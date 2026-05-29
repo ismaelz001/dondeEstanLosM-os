@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Donde Estan Los Mios"
 config/description="La semana del perro"
-run/main_scene="res://scenes/main/intro.tscn"
+run/main_scene="res://scenes/world/barrio_demo.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://assets/ui/icono.png"
 
