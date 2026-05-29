@@ -1,0 +1,26 @@
+[
+  {
+    "id": "saludo_inicial",
+    "speaker": "Vecina",
+    "text": "Buenas.",
+    "next": null,
+    "conditions": {},
+    "consequences": {}
+  },
+  {
+    "id": "mision_activa",
+    "speaker": "Vecina",
+    "text": "Buenas.",
+    "next": null,
+    "conditions": {},
+    "consequences": {}
+  },
+  {
+    "id": "mision_completada",
+    "speaker": "Vecina",
+    "text": "Buenas.",
+    "next": null,
+    "conditions": {},
+    "consequences": {}
+  }
+]

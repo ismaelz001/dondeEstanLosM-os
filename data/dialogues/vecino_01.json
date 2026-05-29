@@ -1,0 +1,53 @@
+[
+  {
+    "id": "saludo_inicial",
+    "speaker": "Juanito",
+    "text": "¿Qué hay, chaval?",
+    "next": "despedida",
+    "conditions": {},
+    "consequences": {}
+  },
+  {
+    "id": "recibir_mensaje",
+    "speaker": "Juanito",
+    "text": "¿Que Chema dice que ya estamos en paz? Dile que vale, que lo dejo pasar esta vez.",
+    "next": null,
+    "conditions": {},
+    "consequences": { "neighborhood_respect": 2 }
+  },
+  {
+    "id": "despedida",
+    "speaker": "Juanito",
+    "text": "Todo bien.",
+    "next": null,
+    "conditions": {},
+    "consequences": {}
+  },
+  {
+    "id": "mision_activa",
+    "speaker": "Juanito",
+    "text": "¿Traes recado de Chema?",
+    "options": [
+      {
+        "label": "Sí, que ya estáis en paz.",
+        "next": "recibir_mensaje",
+        "conditions": {},
+        "consequences": {}
+      },
+      {
+        "label": "No, nada.",
+        "next": "despedida",
+        "conditions": {},
+        "consequences": {}
+      }
+    ]
+  },
+  {
+    "id": "mision_completada",
+    "speaker": "Juanito",
+    "text": "Ya está todo arreglado.",
+    "next": null,
+    "conditions": {},
+    "consequences": {}
+  }
+]

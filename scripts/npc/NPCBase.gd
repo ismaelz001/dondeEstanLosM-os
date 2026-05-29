@@ -1,4 +1,5 @@
 extends StaticBody2D
+class_name NPCBase
 
 # ============================================================
 # NPCBase — Script base para todos los NPCs
