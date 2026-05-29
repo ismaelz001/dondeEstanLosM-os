@@ -216,3 +216,24 @@ func _on_dialogue_node_changed(node_id: String) -> void:
 				complete_objective(active_id, obj["id"])
 				# Si auto_complete = false y todos los objetivos están listos,
 				# la misión se completa cuando el NPC llama complete_mission()
+
+## Llamado por VehicleBase cuando el jugador entra al vehículo
+func _on_vehicle_entered(v_id: String) -> void:
+	# Conectar la señal destination_reached del vehículo a MissionManager
+	# Se hace dinámicamente cuando se detecta el vehículo
+	pass
+
+## Llamado por VehicleBase cuando llega al destino
+func _on_destination_reached(v_id: String, marker_id: String) -> void:
+	var active_id = get_active_mission_id()
+	if active_id == "":
+		return
+	var objectives = _active_objectives.get(active_id, [])
+	for obj in objectives:
+		if obj["status"] != "pending":
+			continue
+		if obj["type"] != "drive_vehicle_to_point":
+			continue
+		if obj.get("vehicle_id", "") == v_id and obj.get("destination_marker", "") == marker_id:
+			complete_objective(active_id, obj["id"])
+			return
