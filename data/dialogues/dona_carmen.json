@@ -52,6 +52,14 @@
     "consequences": { "family": 5, "family_trust": 5 }
   },
   {
+    "id": "entregar_dinero_check",
+    "speaker": "Doña Carmen",
+    "text": "¡Hijo, justo a tiempo! Toma, que voy a pagar esto ahora mismo.",
+    "next": "entregar_dinero",
+    "conditions": {},
+    "consequences": {}
+  },
+  {
     "id": "mision_activa",
     "speaker": "Doña Carmen",
     "text": "Todavía falta, ¿verdad? Necesito esos cincuenta euros antes de mañana.",
