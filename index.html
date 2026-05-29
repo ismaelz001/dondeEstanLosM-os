@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Landing page de DÓNDE ESTÁN LOS MÍOS: LA SEMANA DEL PERRO">
+  <title>DÓNDE ESTÁN LOS MÍOS: LA SEMANA DEL PERRO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0D0D0D;
+      --yellow: #F5D76E;
+      --red: #E8432A;
+      --green: #2AE89A;
+      --ink: #f4efe0;
+      --muted: #b8ad92;
+      --panel: #171717;
+      --panel-2: #202020;
+      --line: rgba(245, 215, 110, 0.44);
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(rgba(245, 215, 110, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245, 215, 110, 0.025) 1px, transparent 1px),
+        var(--bg);
+      background-size: 32px 32px;
+      color: var(--ink);
+      font-family: "Space Mono", monospace;
+      overflow-x: hidden;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 100;
+      background: radial-gradient(circle at center, transparent 46%, rgba(0, 0, 0, 0.58) 100%);
+      mix-blend-mode: multiply;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      margin: 0;
+      font-family: "Bebas Neue", sans-serif;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 64px));
+      margin: 0 auto;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 90;
+      border-bottom: 2px solid var(--yellow);
+      background: rgba(13, 13, 13, 0.92);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      color: var(--yellow);
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(1.75rem, 3vw, 2.35rem);
+      line-height: 0.95;
+      text-shadow: 0 0 16px rgba(245, 215, 110, 0.25);
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      padding: 8px 0;
+      border-bottom: 2px solid transparent;
+      transition: color 140ms ease, border-color 140ms ease, text-shadow 140ms ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--yellow);
+      border-color: var(--yellow);
+      text-shadow: 0 0 14px rgba(245, 215, 110, 0.75);
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 2px solid var(--yellow);
+      background: transparent;
+      color: var(--yellow);
+      font-family: "Space Mono", monospace;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 12px 24px;
+      border: 2px solid currentColor;
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(1.55rem, 3vw, 2rem);
+      line-height: 1;
+      text-transform: uppercase;
+      transition: transform 140ms ease, background 140ms ease, color 140ms ease, box-shadow 140ms ease;
+    }
+
+    .btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 currentColor, 0 0 24px rgba(245, 215, 110, 0.44);
+    }
+
+    .btn-yellow {
+      background: var(--yellow);
+      color: #211900;
+    }
+
+    .btn-yellow:hover {
+      background: transparent;
+      color: var(--yellow);
+    }
+
+    .btn-red {
+      color: var(--red);
+      background: transparent;
+    }
+
+    .btn-red:hover {
+      background: var(--red);
+      color: #170301;
+      box-shadow: 6px 6px 0 currentColor, 0 0 26px rgba(232, 67, 42, 0.55);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 88vh;
+      padding: 150px 0 92px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      border-bottom: 2px solid var(--yellow);
+      background:
+        linear-gradient(90deg, rgba(13, 13, 13, 0.92) 0%, rgba(13, 13, 13, 0.68) 48%, rgba(13, 13, 13, 0.95) 100%),
+        radial-gradient(circle at 74% 42%, rgba(232, 67, 42, 0.27), transparent 30%),
+        radial-gradient(circle at 62% 64%, rgba(42, 232, 154, 0.18), transparent 24%),
+        var(--bg);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .hero::before {
+      background: linear-gradient(rgba(255, 255, 255, 0.035) 50%, rgba(0, 0, 0, 0.2) 50%);
+      background-size: 100% 4px;
+      animation: scanlines 8s linear infinite;
+      opacity: 0.72;
+    }
+
+    .hero::after {
+      background:
+        linear-gradient(90deg, rgba(232, 67, 42, 0.08), rgba(42, 232, 154, 0.06), rgba(245, 215, 110, 0.08)),
+        repeating-linear-gradient(90deg, rgba(255, 0, 0, 0.03) 0 1px, rgba(0, 255, 140, 0.02) 1px 2px, rgba(0, 0, 255, 0.03) 2px 3px);
+      mix-blend-mode: screen;
+      animation: crtPulse 4s ease-in-out infinite;
+    }
+
+    @keyframes scanlines {
+      from { background-position: 0 0; }
+      to { background-position: 0 80px; }
+    }
+
+    @keyframes crtPulse {
+      0%, 100% { opacity: 0.28; transform: translateX(0); }
+      48% { opacity: 0.46; transform: translateX(1px); }
+      52% { opacity: 0.22; transform: translateX(-1px); }
+    }
+
+    .hero-noise {
+      position: absolute;
+      inset: 84px 32px 32px;
+      border: 2px solid rgba(245, 215, 110, 0.34);
+      background:
+        linear-gradient(135deg, transparent 0 62%, rgba(245, 215, 110, 0.12) 62% 63%, transparent 63%),
+        linear-gradient(25deg, transparent 0 52%, rgba(232, 67, 42, 0.16) 52% 53%, transparent 53%);
+      opacity: 0.7;
+    }
+
+    .hero-art {
+      position: absolute;
+      right: max(32px, calc((100vw - var(--max)) / 2));
+      bottom: 78px;
+      width: min(37vw, 430px);
+      aspect-ratio: 1 / 1.08;
+      border: 2px solid var(--red);
+      background:
+        linear-gradient(135deg, rgba(245, 215, 110, 0.07), rgba(42, 232, 154, 0.1)),
+        #111;
+      box-shadow: 10px 10px 0 var(--red), 0 0 42px rgba(232, 67, 42, 0.22);
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-weight: 700;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .hero-art::before {
+      content: "";
+      position: absolute;
+      inset: 20px;
+      border: 1px dashed rgba(245, 215, 110, 0.52);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 4;
+      max-width: 780px;
+    }
+
+    .label {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 6px 10px;
+      border: 1px solid var(--yellow);
+      background: var(--panel);
+      color: var(--yellow);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .glitch {
+      position: relative;
+      color: var(--yellow);
+      font-size: clamp(4.8rem, 13vw, 10rem);
+      line-height: 0.82;
+      text-shadow: 0 0 18px rgba(245, 215, 110, 0.42);
+      animation: glitchSkew 3.2s infinite steps(1);
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .glitch::before {
+      color: var(--red);
+      transform: translate(3px, 0);
+      clip-path: inset(0 0 58% 0);
+      animation: glitchTop 2.4s infinite linear alternate-reverse;
+    }
+
+    .glitch::after {
+      color: var(--green);
+      transform: translate(-3px, 0);
+      clip-path: inset(58% 0 0 0);
+      animation: glitchBottom 1.9s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitchTop {
+      0%, 15%, 100% { transform: translate(2px, 0); }
+      16% { transform: translate(-8px, -2px); }
+      18% { transform: translate(7px, 1px); }
+      48% { transform: translate(2px, 0); }
+      49% { transform: translate(12px, -1px); }
+      51% { transform: translate(-5px, 2px); }
+      75% { transform: translate(2px, 0); }
+      76% { transform: translate(5px, -3px); }
+    }
+
+    @keyframes glitchBottom {
+      0%, 30%, 100% { transform: translate(-2px, 0); }
+      31% { transform: translate(8px, 3px); }
+      33% { transform: translate(-10px, -1px); }
+      62% { transform: translate(-2px, 0); }
+      63% { transform: translate(-12px, 2px); }
+      65% { transform: translate(6px, -2px); }
+    }
+
+    @keyframes glitchSkew {
+      0%, 92%, 100% { transform: skewX(0deg); }
+      93% { transform: skewX(3deg); }
+      94% { transform: skewX(-4deg); }
+      95% { transform: skewX(0deg); }
+    }
+
+    .subtitle {
+      margin-top: 10px;
+      color: var(--red);
+      font-size: clamp(2.4rem, 7vw, 4.9rem);
+      line-height: 0.92;
+    }
+
+    .hero-copy {
+      max-width: 670px;
+      margin-top: 28px;
+      padding: 18px 20px;
+      border-left: 5px solid var(--yellow);
+      background: rgba(32, 32, 32, 0.86);
+      color: var(--muted);
+      font-size: clamp(0.95rem, 1.8vw, 1.12rem);
+      line-height: 1.65;
+    }
+
+    .hero-copy strong {
+      color: var(--ink);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .stats {
+      position: relative;
+      z-index: 8;
+      margin-top: -34px;
+    }
+
+    .stats-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 2px solid var(--yellow);
+      border-bottom: 2px solid var(--yellow);
+      background: #0b0b0b;
+    }
+
+    .stat {
+      min-height: 86px;
+      padding: 18px 22px;
+      border-right: 1px solid rgba(245, 215, 110, 0.3);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      color: var(--yellow);
+      text-transform: uppercase;
+    }
+
+    .stat:last-child {
+      border-right: 0;
+    }
+
+    .stat strong {
+      color: var(--red);
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 2.3rem;
+      line-height: 0.9;
+      font-weight: 400;
+    }
+
+    .section {
+      padding: 92px 0 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(260px, 0.55fr);
+      gap: 32px;
+      align-items: end;
+      margin-bottom: 34px;
+    }
+
+    .kicker {
+      color: var(--green);
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin-top: 8px;
+      color: var(--yellow);
+      font-size: clamp(3rem, 8vw, 5.6rem);
+      line-height: 0.9;
+    }
+
+    .section-text {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 28px;
+    }
+
+    .placeholder {
+      min-height: 360px;
+      border: 2px solid rgba(245, 215, 110, 0.58);
+      background:
+        linear-gradient(135deg, rgba(245, 215, 110, 0.08), transparent 38%),
+        linear-gradient(315deg, rgba(232, 67, 42, 0.16), transparent 34%),
+        #111;
+      display: grid;
+      place-items: center;
+      color: rgba(244, 239, 224, 0.7);
+      font-weight: 700;
+      text-align: center;
+      text-transform: uppercase;
+      box-shadow: 7px 7px 0 rgba(245, 215, 110, 0.32);
+    }
+
+    .hud-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .hud-card,
+    .character-card,
+    .feature-card,
+    .shot-card {
+      border: 2px solid rgba(245, 215, 110, 0.36);
+      background: rgba(23, 23, 23, 0.96);
+    }
+
+    .hud-card {
+      padding: 20px;
+      transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+    }
+
+    .hud-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--green);
+      box-shadow: 0 0 26px rgba(42, 232, 154, 0.22);
+    }
+
+    .hud-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+      color: var(--yellow);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .hud-value {
+      color: var(--green);
+    }
+
+    .progress {
+      height: 16px;
+      border: 1px solid rgba(245, 215, 110, 0.45);
+      background: #090909;
+      overflow: hidden;
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--red), var(--yellow), var(--green));
+      transition: width 1.15s cubic-bezier(0.18, 0.82, 0.28, 1);
+    }
+
+    .hud-card.is-visible .progress span {
+      width: var(--value);
+    }
+
+    .characters {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .character-card {
+      min-height: 310px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .character-card:hover {
+      transform: translate(-3px, -3px);
+      border-color: var(--yellow);
+      box-shadow: 8px 8px 0 var(--red), 0 0 28px rgba(245, 215, 110, 0.22);
+    }
+
+    .portrait {
+      flex: 1;
+      min-height: 188px;
+      display: grid;
+      place-items: center;
+      border-bottom: 2px solid rgba(245, 215, 110, 0.36);
+      background:
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px 5px),
+        linear-gradient(135deg, rgba(42, 232, 154, 0.1), rgba(232, 67, 42, 0.13)),
+        #111;
+      color: var(--muted);
+      font-weight: 700;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .character-body {
+      padding: 18px;
+    }
+
+    .character-body h3 {
+      color: var(--yellow);
+      font-size: 2.35rem;
+      line-height: 0.9;
+    }
+
+    .role {
+      margin: 7px 0 12px;
+      color: var(--red);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .character-body p {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .feature-card {
+      min-height: 224px;
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: attr(data-num);
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      color: rgba(245, 215, 110, 0.16);
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 4.5rem;
+      line-height: 1;
+    }
+
+    .feature-card h3 {
+      position: relative;
+      color: var(--green);
+      font-size: 2.2rem;
+      line-height: 0.95;
+    }
+
+    .feature-card p {
+      position: relative;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.65;
+    }
+
+    .screenshots {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .shot-card {
+      transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+    }
+
+    .shot-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--red);
+      box-shadow: 0 0 28px rgba(232, 67, 42, 0.28);
+    }
+
+    .shot-image {
+      aspect-ratio: 16 / 10;
+      display: grid;
+      place-items: center;
+      background:
+        linear-gradient(135deg, rgba(42, 232, 154, 0.1), transparent),
+        repeating-linear-gradient(90deg, rgba(245, 215, 110, 0.06) 0 2px, transparent 2px 10px),
+        #101010;
+      color: var(--muted);
+      font-weight: 700;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .shot-caption {
+      padding: 14px 16px;
+      color: var(--yellow);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .cta {
+      position: relative;
+      margin-top: 96px;
+      padding: 78px 0;
+      border-top: 2px solid var(--red);
+      border-bottom: 2px solid var(--red);
+      background:
+        linear-gradient(90deg, rgba(232, 67, 42, 0.22), transparent 42%),
+        linear-gradient(270deg, rgba(42, 232, 154, 0.16), transparent 44%),
+        #111;
+      overflow: hidden;
+    }
+
+    .cta::before {
+      content: "INSERT COIN";
+      position: absolute;
+      right: -18px;
+      top: 12px;
+      color: rgba(245, 215, 110, 0.08);
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(5rem, 17vw, 13rem);
+      line-height: 1;
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .cta h2 {
+      color: var(--yellow);
+      font-size: clamp(3.2rem, 8vw, 6.4rem);
+      line-height: 0.9;
+    }
+
+    .cta p {
+      max-width: 620px;
+      margin-top: 16px;
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    footer {
+      padding: 30px 0;
+      background: #080808;
+      border-top: 2px solid rgba(245, 215, 110, 0.34);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .footer-logo {
+      color: var(--yellow);
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 2.1rem;
+      line-height: 0.9;
+    }
+
+    @media (max-width: 980px) {
+      .hero-art {
+        opacity: 0.28;
+        right: 32px;
+        width: 45vw;
+      }
+
+      .stats-inner,
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .concept-grid,
+      .section-head,
+      .cta-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .characters,
+      .screenshots {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .wrap {
+        width: min(100% - 32px, var(--max));
+      }
+
+      .nav-inner {
+        min-height: 68px;
+      }
+
+      .brand {
+        max-width: 230px;
+        white-space: normal;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 2px);
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 12px 16px 18px;
+        border-bottom: 2px solid var(--yellow);
+        background: rgba(13, 13, 13, 0.97);
+      }
+
+      .nav-links.is-open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 12px 0;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 118px 0 72px;
+      }
+
+      .hero-noise {
+        inset: 76px 16px 20px;
+      }
+
+      .hero-art {
+        display: none;
+      }
+
+      .glitch {
+        font-size: clamp(4.2rem, 19vw, 7rem);
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .stats {
+        margin-top: 0;
+      }
+
+      .stats-inner,
+      .characters,
+      .features-grid,
+      .screenshots {
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        border-right: 0;
+        border-bottom: 1px solid rgba(245, 215, 110, 0.3);
+      }
+
+      .stat:last-child {
+        border-bottom: 0;
+      }
+
+      .section {
+        padding-top: 66px;
+      }
+
+      .placeholder {
+        min-height: 260px;
+      }
+
+      .cta {
+        margin-top: 70px;
+        padding: 58px 0;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#inicio">DÓNDE ESTÁN LOS MÍOS</a>
+      <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">☰</button>
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="#concepto">Gameplay</a>
+        <a href="#personajes">Personajes</a>
+        <a href="#features">Misiones</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="#cta">Jugar ahora</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-noise" aria-hidden="true"></div>
+      <div class="hero-art">Placeholder<br>key art del barrio</div>
+      <div class="wrap hero-content">
+        <span class="label">PC Windows · Android próximamente</span>
+        <h1 id="hero-title" class="glitch" data-text="DÓNDE ESTÁN LOS MÍOS">DÓNDE ESTÁN LOS MÍOS</h1>
+        <h2 class="subtitle">LA SEMANA DEL PERRO</h2>
+        <p class="hero-copy">
+          "La semana más larga de tu vida, en 80 píxeles de altura."<br>
+          <strong>No eres un criminal. Eres un chaval intentando que los tuyos lleguen al domingo.</strong>
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-yellow" href="#cta">Descargar demo gratis</a>
+          <a class="btn btn-red" href="#screenshots">Ver gameplay</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Datos rápidos">
+      <div class="wrap stats-inner">
+        <div class="stat"><strong>6</strong><span>Personajes jugables</span></div>
+        <div class="stat"><strong>7</strong><span>Días de supervivencia</span></div>
+        <div class="stat"><strong>1</strong><span>Barrio vivo</span></div>
+        <div class="stat"><strong>+30</strong><span>Misiones</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="concepto">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Concepto / HUD de supervivencia</p>
+            <h2 class="section-title">Una semana para aguantar</h2>
+          </div>
+          <p class="section-text">
+            Acción callejera, decisiones pequeñas que pesan y una agenda que avanza aunque tú no estés listo.
+            Cada recado consume tiempo, reputación y nervios.
+          </p>
+        </div>
+        <div class="concept-grid">
+          <div class="placeholder">Placeholder<br>captura del barrio</div>
+          <div class="hud-grid">
+            <article class="hud-card">
+              <div class="hud-top"><span>Respeto del barrio</span><span class="hud-value">82%</span></div>
+              <div class="progress" aria-hidden="true"><span style="--value:82%"></span></div>
+            </article>
+            <article class="hud-card">
+              <div class="hud-top"><span>Dinero para casa</span><span class="hud-value">64%</span></div>
+              <div class="progress" aria-hidden="true"><span style="--value:64%"></span></div>
+            </article>
+            <article class="hud-card">
+              <div class="hud-top"><span>Presión policial</span><span class="hud-value">47%</span></div>
+              <div class="progress" aria-hidden="true"><span style="--value:47%"></span></div>
+            </article>
+            <article class="hud-card">
+              <div class="hud-top"><span>Tiempo restante</span><span class="hud-value">23%</span></div>
+              <div class="progress" aria-hidden="true"><span style="--value:23%"></span></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="personajes">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Expediente de personajes</p>
+            <h2 class="section-title">Los míos</h2>
+          </div>
+          <p class="section-text">
+            Seis perspectivas del mismo barrio. Cambian los contactos, los atajos, las broncas y lo que cada uno
+            está dispuesto a perder antes del domingo.
+          </p>
+        </div>
+        <div class="characters">
+          <article class="character-card">
+            <div class="portrait">Placeholder<br>retrato personaje</div>
+            <div class="character-body">
+              <h3>El Kinki</h3>
+              <p class="role">Conductor / recadero</p>
+              <p>Rápido para moverse, malo para esperar. Conoce cada salida antes de que la cosa se caliente.</p>
+            </div>
+          </article>
+          <article class="character-card">
+            <div class="portrait">Placeholder<br>retrato personaje</div>
+            <div class="character-body">
+              <h3>Nuria</h3>
+              <p class="role">Cabeza fría</p>
+              <p>Negocia cuando todos gritan. Si falla, el barrio entero sube el volumen.</p>
+            </div>
+          </article>
+          <article class="character-card">
+            <div class="portrait">Placeholder<br>retrato personaje</div>
+            <div class="character-body">
+              <h3>Chino</h3>
+              <p class="role">Manitas / tecnología</p>
+              <p>Puertas, radios, recreativas y alarmas. Donde otros ven chatarra, él ve una oportunidad.</p>
+            </div>
+          </article>
+          <article class="character-card">
+            <div class="portrait">Placeholder<br>retrato personaje</div>
+            <div class="character-body">
+              <h3>La Yaya</h3>
+              <p class="role">Memoria del bloque</p>
+              <p>Lo ha visto todo y todavía recuerda quién debe favores. Su información vale más que un arma.</p>
+            </div>
+          </article>
+          <article class="character-card">
+            <div class="portrait">Placeholder<br>retrato personaje</div>
+            <div class="character-body">
+              <h3>Rafa</h3>
+              <p class="role">Puños / protección</p>
+              <p>No empieza peleas, pero las termina. Ideal cuando una misión deja de ser conversación.</p>
+            </div>
+          </article>
+          <article class="character-card">
+            <div class="portrait">Placeholder<br>retrato personaje</div>
+            <div class="character-body">
+              <h3>Lola</h3>
+              <p class="role">Sigilo / callejones</p>
+              <p>Entra por donde nadie mira. Sale antes de que el neón deje de parpadear.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Sistemas de juego</p>
+            <h2 class="section-title">Barrio, reloj y consecuencias</h2>
+          </div>
+          <p class="section-text">
+            No todo se arregla corriendo. El juego mezcla exploración, micro-misiones y presión narrativa para
+            que cada día tenga un precio.
+          </p>
+        </div>
+        <div class="features-grid">
+          <article class="feature-card" data-num="01">
+            <h3>Mapa vivo</h3>
+            <p>Tiendas, portales, solares y bares cambian de ritmo según la hora y las decisiones tomadas.</p>
+          </article>
+          <article class="feature-card" data-num="02">
+            <h3>Agenda semanal</h3>
+            <p>Cada día desbloquea encargos, deudas y encuentros. Llegar tarde también cuenta como elegir.</p>
+          </article>
+          <article class="feature-card" data-num="03">
+            <h3>Misiones cruzadas</h3>
+            <p>Un favor para un personaje puede cerrar una puerta para otro. La familia pesa en cada ruta.</p>
+          </article>
+          <article class="feature-card" data-num="04">
+            <h3>Estética CRT</h3>
+            <p>Pixel art áspero, HUD de recreativa y color urbano para una historia de barrio sin nostalgia limpia.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="screenshots">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker">Material del juego</p>
+            <h2 class="section-title">Screenshots</h2>
+          </div>
+          <p class="section-text">
+            Bloques listos para reemplazar por capturas reales del menú, gameplay, diálogos y escenas clave.
+          </p>
+        </div>
+        <div class="screenshots">
+          <article class="shot-card">
+            <div class="shot-image">Placeholder<br>menú principal</div>
+            <div class="shot-caption">Pantalla de inicio</div>
+          </article>
+          <article class="shot-card">
+            <div class="shot-image">Placeholder<br>gameplay barrio</div>
+            <div class="shot-caption">Exploración urbana</div>
+          </article>
+          <article class="shot-card">
+            <div class="shot-image">Placeholder<br>diálogo misión</div>
+            <div class="shot-caption">Decisiones y favores</div>
+          </article>
+          <article class="shot-card">
+            <div class="shot-image">Placeholder<br>HUD recursos</div>
+            <div class="shot-caption">Supervivencia semanal</div>
+          </article>
+          <article class="shot-card">
+            <div class="shot-image">Placeholder<br>personajes</div>
+            <div class="shot-caption">El grupo completo</div>
+          </article>
+          <article class="shot-card">
+            <div class="shot-image">Placeholder<br>escena nocturna</div>
+            <div class="shot-caption">La noche del perro</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="cta">
+      <div class="wrap cta-inner">
+        <div>
+          <p class="kicker">Demo jugable</p>
+          <h2>Sobrevive hasta el domingo</h2>
+          <p>La demo incluye el primer día, tres personajes disponibles y una muestra del sistema de reputación.</p>
+        </div>
+        <a class="btn btn-yellow" href="#inicio">Jugar ahora</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div class="footer-logo">DÓNDE ESTÁN LOS MÍOS</div>
+      <div>© 1994 LA SEMANA DEL PERRO - ARCHIVOS CLASIFICADOS</div>
+      <div>AVISO LEGAL · PRIVACIDAD · SOPORTE</div>
+    </div>
+  </footer>
+
+  <script>
+    const navToggle = document.querySelector(".nav-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    navToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("is-open");
+      navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("is-open");
+        navToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.35 });
+
+    document.querySelectorAll(".hud-card").forEach((card) => observer.observe(card));
+  </script>
+</body>
+</html>
