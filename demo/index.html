@@ -1,194 +1,220 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Demo Online - DÓNDE ESTÁN LOS MÍOS</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0D0D0D;
-      --yellow: #F5D76E;
-      --red: #E8432A;
-      --green: #2AE89A;
-      --ink: #f4efe0;
-      --muted: #b8ad92;
-    }
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+		<title>Donde Estan Los Mios</title>
+		<style>
+html, body, #canvas {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
 
-    * {
-      box-sizing: border-box;
-    }
+body {
+	color: white;
+	background-color: black;
+	overflow: hidden;
+	touch-action: none;
+}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      background:
-        linear-gradient(rgba(245, 215, 110, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(245, 215, 110, 0.025) 1px, transparent 1px),
-        var(--bg);
-      background-size: 32px 32px;
-      color: var(--ink);
-      font-family: "Space Mono", monospace;
-      overflow: hidden;
-    }
+#canvas {
+	display: block;
+}
 
-    body::before,
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-    }
+#canvas:focus {
+	outline: none;
+}
 
-    body::before {
-      background: linear-gradient(rgba(255,255,255,0.035) 50%, rgba(0,0,0,0.22) 50%);
-      background-size: 100% 4px;
-      animation: scanlines 8s linear infinite;
-    }
+#status, #status-splash, #status-progress {
+	position: absolute;
+	left: 0;
+	right: 0;
+}
 
-    body::after {
-      background: radial-gradient(circle at center, transparent 42%, rgba(0,0,0,0.78) 100%);
-    }
+#status, #status-splash {
+	top: 0;
+	bottom: 0;
+}
 
-    @keyframes scanlines {
-      from { background-position: 0 0; }
-      to { background-position: 0 80px; }
-    }
+#status {
+	background-color: #242424;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	visibility: hidden;
+}
 
-    main {
-      width: min(920px, 100%);
-      position: relative;
-      z-index: 1;
-      border: 2px solid var(--yellow);
-      background: rgba(17, 17, 17, 0.95);
-      box-shadow: 10px 10px 0 var(--red), 0 0 42px rgba(245, 215, 110, 0.18);
-      padding: clamp(28px, 6vw, 56px);
-      text-align: center;
-    }
+#status-splash {
+	max-height: 100%;
+	max-width: 100%;
+	margin: auto;
+}
 
-    .status {
-      display: inline-block;
-      margin-bottom: 18px;
-      padding: 6px 10px;
-      border: 1px solid var(--green);
-      color: var(--green);
-      font-size: 0.78rem;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
+#status-splash.show-image--false {
+	display: none;
+}
 
-    h1 {
-      margin: 0;
-      color: var(--yellow);
-      font-family: "Bebas Neue", sans-serif;
-      font-size: clamp(4rem, 12vw, 8.5rem);
-      font-weight: 400;
-      line-height: 0.86;
-      text-transform: uppercase;
-      text-shadow: 0 0 18px rgba(245, 215, 110, 0.35);
-    }
+#status-splash.fullsize--true {
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+}
 
-    h2 {
-      margin: 8px 0 0;
-      color: var(--red);
-      font-family: "Bebas Neue", sans-serif;
-      font-size: clamp(2.2rem, 6vw, 4.2rem);
-      font-weight: 400;
-      line-height: 0.95;
-      text-transform: uppercase;
-    }
+#status-splash.use-filter--false {
+	image-rendering: pixelated;
+}
 
-    p {
-      max-width: 660px;
-      margin: 24px auto 0;
-      color: var(--muted);
-      line-height: 1.7;
-    }
+#status-progress, #status-notice {
+	display: none;
+}
 
-    .screen {
-      min-height: 220px;
-      margin-top: 32px;
-      border: 2px dashed rgba(245, 215, 110, 0.52);
-      display: grid;
-      place-items: center;
-      background:
-        repeating-linear-gradient(0deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 5px),
-        linear-gradient(135deg, rgba(42, 232, 154, 0.1), rgba(232, 67, 42, 0.13)),
-        #101010;
-      color: var(--yellow);
-      font-weight: 700;
-      text-transform: uppercase;
-    }
+#status-progress {
+	bottom: 10%;
+	width: 50%;
+	margin: 0 auto;
+}
 
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 14px;
-      margin-top: 30px;
-    }
+#status-notice {
+	background-color: #5b3943;
+	border-radius: 0.5rem;
+	border: 1px solid #9b3943;
+	color: #e0e0e0;
+	font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
+	line-height: 1.3;
+	margin: 0 2rem;
+	overflow: hidden;
+	padding: 1rem;
+	text-align: center;
+	z-index: 1;
+}
+		</style>
+		<link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
+<link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
 
-    a {
-      display: inline-flex;
-      min-height: 50px;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 22px;
-      border: 2px solid currentColor;
-      color: var(--yellow);
-      font-family: "Bebas Neue", sans-serif;
-      font-size: 1.75rem;
-      line-height: 1;
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease, color 140ms ease;
-    }
+	</head>
+	<body>
+		<canvas id="canvas">
+			Your browser does not support the canvas tag.
+		</canvas>
 
-    a:hover {
-      transform: translate(-2px, -2px);
-      background: var(--yellow);
-      color: #211900;
-      box-shadow: 6px 6px 0 var(--yellow);
-    }
+		<noscript>
+			Your browser does not support JavaScript.
+		</noscript>
 
-    @media (max-width: 640px) {
-      body {
-        padding: 16px;
-        overflow: auto;
-      }
+		<div id="status">
+			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="index.png" alt="">
+			<progress id="status-progress"></progress>
+			<div id="status-notice"></div>
+		</div>
 
-      main {
-        padding: 28px 18px;
-      }
+		<script src="index.js"></script>
+		<script>
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":75289216,"index.wasm":43699190},"focusCanvas":true,"gdextensionLibs":[]};
+const GODOT_THREADS_ENABLED = false;
+const engine = new Engine(GODOT_CONFIG);
 
-      .actions {
-        flex-direction: column;
-      }
+(function () {
+	const statusOverlay = document.getElementById('status');
+	const statusProgress = document.getElementById('status-progress');
+	const statusNotice = document.getElementById('status-notice');
 
-      a {
-        width: 100%;
-      }
-    }
-  </style>
-</head>
-<body>
-  <main>
-    <span class="status">Ruta web de demo preparada</span>
-    <h1>Demo online</h1>
-    <h2>La semana del perro</h2>
-    <p>
-      Aquí se cargará la build web jugable. Cuando tengamos el export HTML5/Web del juego, este directorio
-      será el punto de entrada de la demo en Vercel.
-    </p>
-    <div class="screen">Placeholder<br>build web del juego</div>
-    <div class="actions">
-      <a href="../">Volver a la landing</a>
-    </div>
-  </main>
-</body>
+	let initializing = true;
+	let statusMode = '';
+
+	function setStatusMode(mode) {
+		if (statusMode === mode || !initializing) {
+			return;
+		}
+		if (mode === 'hidden') {
+			statusOverlay.remove();
+			initializing = false;
+			return;
+		}
+		statusOverlay.style.visibility = 'visible';
+		statusProgress.style.display = mode === 'progress' ? 'block' : 'none';
+		statusNotice.style.display = mode === 'notice' ? 'block' : 'none';
+		statusMode = mode;
+	}
+
+	function setStatusNotice(text) {
+		while (statusNotice.lastChild) {
+			statusNotice.removeChild(statusNotice.lastChild);
+		}
+		const lines = text.split('\n');
+		lines.forEach((line) => {
+			statusNotice.appendChild(document.createTextNode(line));
+			statusNotice.appendChild(document.createElement('br'));
+		});
+	}
+
+	function displayFailureNotice(err) {
+		console.error(err);
+		if (err instanceof Error) {
+			setStatusNotice(err.message);
+		} else if (typeof err === 'string') {
+			setStatusNotice(err);
+		} else {
+			setStatusNotice('An unknown error occurred.');
+		}
+		setStatusMode('notice');
+		initializing = false;
+	}
+
+	const missing = Engine.getMissingFeatures({
+		threads: GODOT_THREADS_ENABLED,
+	});
+
+	if (missing.length !== 0) {
+		if (GODOT_CONFIG['serviceWorker'] && GODOT_CONFIG['ensureCrossOriginIsolationHeaders'] && 'serviceWorker' in navigator) {
+			let serviceWorkerRegistrationPromise;
+			try {
+				serviceWorkerRegistrationPromise = navigator.serviceWorker.getRegistration();
+			} catch (err) {
+				serviceWorkerRegistrationPromise = Promise.reject(new Error('Service worker registration failed.'));
+			}
+			// There's a chance that installing the service worker would fix the issue
+			Promise.race([
+				serviceWorkerRegistrationPromise.then((registration) => {
+					if (registration != null) {
+						return Promise.reject(new Error('Service worker already exists.'));
+					}
+					return registration;
+				}).then(() => engine.installServiceWorker()),
+				// For some reason, `getRegistration()` can stall
+				new Promise((resolve) => {
+					setTimeout(() => resolve(), 2000);
+				}),
+			]).then(() => {
+				// Reload if there was no error.
+				window.location.reload();
+			}).catch((err) => {
+				console.error('Error while registering service worker:', err);
+			});
+		} else {
+			// Display the message as usual
+			const missingMsg = 'Error\nThe following features required to run Godot projects on the Web are missing:\n';
+			displayFailureNotice(missingMsg + missing.join('\n'));
+		}
+	} else {
+		setStatusMode('progress');
+		engine.startGame({
+			'onProgress': function (current, total) {
+				if (current > 0 && total > 0) {
+					statusProgress.value = current;
+					statusProgress.max = total;
+				} else {
+					statusProgress.removeAttribute('value');
+					statusProgress.removeAttribute('max');
+				}
+			},
+		}).then(() => {
+			setStatusMode('hidden');
+		}, displayFailureNotice);
+	}
+}());
+		</script>
+	</body>
 </html>
+

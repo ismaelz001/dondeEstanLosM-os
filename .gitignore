@@ -3,5 +3,6 @@
 
 !.gitignore
 !index.html
+!export_presets.cfg
 !demo/
 !demo/**
