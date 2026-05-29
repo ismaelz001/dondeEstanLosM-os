@@ -1,0 +1,5 @@
+# Keep this repository deployable as a minimal Vercel static site.
+*
+
+!.gitignore
+!index.html
